@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 8 | S3 Mídia Digital - Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            font-family: 'Manrope', sans-serif;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 2rem;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateX(-5px);
+        }
+
+        .back-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .logo-header img {
+            height: 36px;
+            width: auto;
+        }
+
+        .hero {
+            padding: 60px 20px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(20, 20, 20, 0.8) 0%, rgba(10, 10, 10, 1) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .project-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .project-image-wrapper {
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .images-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .images-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .site-footer {
+            background-color: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1140px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-cta {
+            margin-bottom: 30px;
+        }
+
+        .footer-cta h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-cta p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 30px 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo img {
+            height: 32px;
+            width: auto;
+            opacity: 0.8;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .footer-social svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.8rem 1rem;
+            }
+
+            .back-button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .back-button span {
+                display: none;
+            }
+
+            .logo-header img {
+                height: 28px;
+            }
+
+            .hero {
+                padding: 40px 16px 30px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .project-container {
+                padding: 16px;
+            }
+
+            .project-image-wrapper {
+                border-radius: 12px;
+            }
+
+            .footer-cta h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../../../../portfolio.html" class="back-button">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Voltar ao Portfólio</span>
+            </a>
+            <div class="logo-header">
+                <a href="../../../../index - S3midia.html"><img
+                        src="../../../../wp-content/uploads/2025/11/Logo S3 midia.webp" alt="S3 Mídia Digital"></a>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <h1>Landing Page - Projeto 8</h1>
+        <p>Confira o design completo desta landing page desenvolvida pela S3 Mídia Digital</p>
+    </section>
+    <div class="project-container">
+        <div class="project-image-wrapper">
+            <div class="images-container">
+                <img src="(30) - Portfolio-Projeto-66-CAPA.webp" alt="Landing Page - Projeto 8 - Preview Completo">
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-cta">
+                <h3>Gostou do que viu?</h3>
+                <p>Confira outros projetos em nosso portfólio ou entre em contato para criar o seu!</p>
+                <a href="../../../../portfolio.html" class="portfolio-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    Ver mais projetos
+                </a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div class="footer-logo"><a href="../../../../index - S3midia.html"><img
+                            src="../../../../wp-content/uploads/2025/11/Logo S3 midia.webp" alt="S3 Mídia Digital"></a>
+                </div>
+                <div class="footer-copyright">Copyright ©2025 | S3MÍDIA DIGITAL</div>
+                <div class="footer-social">
+                    <a href="https://api.whatsapp.com/send/?phone=5577999238273&text=%22Ol%C3%A1,%20gostaria%20de%20fazer%20um%20or%C3%A7amento...%22&type=phone_number&app_absent=0"
+                        target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 448 512">
+                            <path
+                                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157z" />
+                        </svg></a>
+                    <a href="https://www.instagram.com/s3midia/" target="_blank" aria-label="Instagram"><svg
+                            viewBox="0 0 448 512">
+                            <path
+                                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8z" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

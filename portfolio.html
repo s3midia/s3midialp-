@@ -1,0 +1,2005 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - S3 MÍDIA | Landing Pages</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f0f1a 100%);
+            min-height: 100vh;
+        }
+
+        /* Metal Text Effect */
+        .metal-text {
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(220, 220, 220, 0.9) 20%,
+                    rgba(150, 150, 150, 0.9) 40%,
+                    rgba(255, 255, 255, 0.9) 60%,
+                    rgba(180, 180, 180, 0.8) 80%,
+                    rgba(255, 255, 255, 0) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shine 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Container Tech */
+        .container-tech {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container-tech::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .container-tech:hover::before {
+            left: 100%;
+        }
+
+        /* Seção do Portfólio */
+        .portfolio-section {
+            padding: 80px 20px;
+        }
+
+        .portfolio-section h2 {
+            font-family: 'Manrope', sans-serif !important;
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        /* Cards do Portfólio */
+        .portfolio-card {
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 0 25px rgba(255, 255, 255, 0.1),
+                inset 0 0 15px rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.03);
+        }
+
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            aspect-ratio: 4 / 5;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-card h3 {
+            font-family: 'Manrope', sans-serif !important;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 300;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* Botão do Portfólio */
+        .portfolio-button {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Badge de Status */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Manrope', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .status-badge.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-badge.coming-soon {
+            background: rgba(156, 163, 175, 0.15);
+            color: #9ca3af;
+            border: 1px solid rgba(156, 163, 175, 0.3);
+        }
+
+        .status-badge svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Grid Responsivo */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .portfolio-section h2 {
+                font-size: 32px !important;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .portfolio-card h3 {
+                font-size: 14px !important;
+            }
+        }
+
+        /* Header com Botão Voltar */
+        .back-header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .back-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .portfolio-section h2 {
+                font-size: 32px !important;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .portfolio-card h3 {
+                font-size: 14px !important;
+            }
+
+            .back-button {
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-section h2 {
+                font-size: 28px !important;
+            }
+        }
+
+        /* === SISTEMA DE PAGINAÇÃO === */
+
+        /* Ocultar cards que não estão na página ativa */
+        .portfolio-card.hidden {
+            display: none !important;
+        }
+
+        /* Container de Paginação */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Botões de Paginação */
+        .pagination-btn,
+        .pagination-number {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .pagination-btn:hover:not(:disabled),
+        .pagination-number:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Botão ativo */
+        .pagination-number.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            cursor: default;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Botões desabilitados */
+        .pagination-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Container dos números */
+        .pagination-numbers {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+
+            .pagination-btn,
+            .pagination-number {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .pagination-controls {
+                gap: 8px;
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .pagination-btn,
+            .pagination-number {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .pagination-controls {
+                gap: 6px;
+            }
+
+            /* Em telas muito pequenas, texto dos botões mais curto */
+            .pagination-btn span.full-text {
+                display: none;
+            }
+
+            .pagination-btn span.short-text {
+                display: inline;
+            }
+        }
+
+        @media (min-width: 481px) {
+            .pagination-btn span.short-text {
+                display: none;
+            }
+
+            .pagination-btn span.full-text {
+                display: inline;
+            }
+        }
+
+        /* ============================================
+           FILTROS DE PESQUISA
+           ============================================ */
+
+        .filter-container {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Search Box */
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: #fff;
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn svg {
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .filter-btn.active svg {
+            color: #000;
+        }
+
+        /* Card animations when filtering */
+        .portfolio-card.fade-out {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .portfolio-card.fade-in {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .no-results h3 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .no-results p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+        }
+
+        /* Responsive Filters */
+        @media (max-width: 768px) {
+            .filter-container {
+                gap: 16px;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .filter-btn svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-btn {
+                padding: 7px 14px;
+                font-size: 12px;
+            }
+
+            .filter-btn span {
+                display: none;
+            }
+
+            .filter-btn svg {
+                margin-right: 0;
+            }
+
+            .search-input {
+                font-size: 14px;
+                padding: 12px 18px 12px 44px;
+            }
+        }
+
+        /* ============================================
+           MENU STICKY STYLES
+           ============================================ */
+
+        .sticky-menu {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 0.8rem 2rem;
+            z-index: 99999 !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            /* changed border to bottom only */
+            border-radius: 0;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+            transform: none;
+            /* Reset transform */
+        }
+
+        /* Ensure it's always visible and overrides JS toggling if any */
+        .sticky-menu.visible {
+            top: 0;
+        }
+
+        .menu-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo-section {
+            flex-shrink: 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .degrade-s3 {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(150, 150, 150, 0.9)) !important;
+            background-size: 200% 200%;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            animation: shimmer 3s ease-in-out infinite;
+            color: #fff !important;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .nav-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(150, 150, 150, 0.8));
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .cta-section {
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            background: transparent;
+            color: #fff;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive Sticky Menu */
+        @media (max-width: 768px) {
+            .sticky-menu {
+                padding: 1rem 1.5rem;
+            }
+
+            .menu-container {
+                gap: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-section {
+                position: relative;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                padding: 2rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .cta-button {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sticky-menu {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-menu {
+                width: 85%;
+                max-width: none;
+            }
+
+            .cta-section {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .menu-container {
+                max-width: 1600px;
+            }
+
+            .nav-item {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.85rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Menu Sticky -->
+    <nav class="sticky-menu" id="stickyMenu">
+        <div class="menu-container">
+            <!-- Logo -->
+            <div class="logo-section">
+                <a href="#" style="text-decoration: none;">
+                    <img src="wp-content/uploads/2025/11/Logo S3 midia.webp" alt="S3 Mídia" class="logo-image">
+                </a>
+            </div>
+
+            <style>
+                .logo-image {
+                    height: 40px;
+                    width: auto;
+                    object-fit: contain;
+                }
+
+                @media (max-width: 480px) {
+                    .logo-image {
+                        height: 32px;
+                    }
+                }
+            </style>
+
+            <!-- Menu Items -->
+            <div class="nav-section">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index - S3midia.html" class="nav-item">Início</a></li>
+                    <li><a href="#" class="nav-item active">Portfólio</a></li>
+                    <li><a href="index - S3midia.html#servicos" class="nav-item">Serviços</a></li>
+                    <li><a href="https://api.whatsapp.com/send/?phone=5577999238273&text&text=%22Ol%C3%A1,%20gostaria%20de%20fazer%20um%20or%C3%A7amento...%22&type=phone_number&app_absent=0"
+                            class="nav-item">Contato</a></li>
+                </ul>
+
+                <!-- Menu Toggle para mobile -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+
+            <!-- Call to Action Button -->
+            <div class="cta-section">
+                <a href="https://api.whatsapp.com/send/?phone=5577999238273&text&text=%22Ol%C3%A1,%20gostaria%20de%20fazer%20um%20or%C3%A7amento...%22&type=phone_number&app_absent=0"
+                    class="cta-button">
+                    Fale conosco
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header com Botão Voltar -->
+    <div class="back-header">
+        <div style="max-width: 1140px; margin: 0 auto;">
+            <a href="index - S3midia.html" class="back-button">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Voltar para página inicial
+            </a>
+        </div>
+    </div>
+
+    <!-- Seção de Portfólio -->
+    <div class="portfolio-section">
+        <div style="max-width: 1140px; margin: 0 auto;">
+
+            <!-- Título -->
+            <div style="margin-bottom: 50px; text-align: center;">
+                <h2>
+                    Conheça alguns dos <br><span class="metal-text">nossos trabalhos:</span>
+                </h2>
+            </div>
+
+            <!-- Filtros de Pesquisa -->
+            <div class="filter-container">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar projetos...">
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                        Todos
+                    </button>
+                    <button class="filter-btn" data-filter="landing">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9 3H5C3.89543 3 3 3.89543 3 5V9M9 21H5C3.89543 21 3 20.1046 3 19V15M21 9V5C21 3.89543 20.1046 3 19 3H15M21 15V19C21 20.1046 20.1046 21 19 21H15"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        Landing Pages
+                    </button>
+                    <button class="filter-btn" data-filter="ecommerce">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        E-commerce
+                    </button>
+                    <button class="filter-btn" data-filter="institutional">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19 21V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V21M19 21H21M19 21H14M5 21H3M5 21H10M10 21V16C10 15.4477 10.4477 15 11 15H13C13.5523 15 14 15.4477 14 16V21M10 21H14M9 8H10M9 12H10M15 8H14M15 12H14"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Institucional
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grade de Projetos -->
+            <div class="portfolio-grid">
+
+                <!-- Card 17 - PRIMEIRO (Destaque) -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 17">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/0/0 - tab.webp" alt="Landing Page - Projeto 17">
+                    </div>
+                    <h3>Landing Page - Projeto 17</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/0/Pedro Dorigan.html" class="portfolio-button">Ver projeto
+                            completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 1 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 1">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(0) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 1">
+                    </div>
+                    <h3>Landing Page - Projeto 1</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(0) - Portfolio-Projeto-66-CAPA.htm"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 2">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(1) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 2">
+                    </div>
+                    <h3>Landing Page - Projeto 2</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(1) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 3">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(2) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 3">
+                    </div>
+                    <h3>Landing Page - Projeto 3</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(2) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 4">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(3) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 4">
+                    </div>
+                    <h3>Landing Page - Projeto 4</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(3) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 5">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(4) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 5">
+                    </div>
+                    <h3>Landing Page - Projeto 5</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(4) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 6">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(5) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 6">
+                    </div>
+                    <h3>Landing Page - Projeto 6</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(5) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 7">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(26) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 7">
+                    </div>
+                    <h3>Landing Page - Projeto 7</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(26) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 8">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(30) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 8">
+                    </div>
+                    <h3>Landing Page - Projeto 8</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(30) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 9">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(41) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 9">
+                    </div>
+                    <h3>Landing Page - Projeto 9</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(41) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 10">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(44) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 10">
+                    </div>
+                    <h3>Landing Page - Projeto 10</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(44) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 11">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(54) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 11">
+                    </div>
+                    <h3>Landing Page - Projeto 11</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(54) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 12">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(58) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 12">
+                    </div>
+                    <h3>Landing Page - Projeto 12</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(58) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 13 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 13">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(63) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 13">
+                    </div>
+                    <h3>Landing Page - Projeto 13</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(63) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 14 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 14">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(66) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 14">
+                    </div>
+                    <h3>Landing Page - Projeto 14</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(66) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 15 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 15">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(71) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 15">
+                    </div>
+                    <h3>Landing Page - Projeto 15</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(71) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 16 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 16">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(83) - Portfolio-Projeto-66-CAPA.webp"
+                            alt="Landing Page - Projeto 16">
+                    </div>
+                    <h3>Landing Page - Projeto 16</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(83) - Portfolio-Projeto-66-CAPA.html"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 17 foi movido para o início da grade -->
+
+                <!-- Card 18 - E-commerce -->
+                <div class="portfolio-card container-tech" data-category="ecommerce"
+                    data-title="E-commerce - Projeto 18">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/93/93 -tab.webp" alt="E-commerce - Projeto 18">
+                    </div>
+                    <h3>E-commerce - Projeto 18</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/93/screencapture-baimportare-br-2023-02-16-22_19_52.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 19 - Site Institucional -->
+                <div class="portfolio-card container-tech" data-category="institutional"
+                    data-title="Site Institucional - Projeto 19">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/100/100 - tab.webp" alt="Site Institucional - Projeto 19">
+                    </div>
+                    <h3>Site Institucional - Projeto 19</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/100/screencapture-escolaespacodoaprendiz-br-2024-05-16-15_57_24.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 20 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 20">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/102/102 - tab.webp" alt="Landing Page - Projeto 20">
+                    </div>
+                    <h3>Landing Page - Projeto 20</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/102/screencapture-grupomettaengenharia-br-fachadas-2023-04-12-19_59_03.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 21 -->
+                <div class="portfolio-card container-tech" data-category="landing"
+                    data-title="Landing Page - Projeto 21">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/103/103 - tab.webp" alt="Landing Page - Projeto 21">
+                    </div>
+                    <h3>Landing Page - Projeto 21</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/103/screencapture-grupomettaengenharia-br-posto-de-combustivel-2023-04-12-20_03_01.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 22 - E-commerce -->
+                <div class="portfolio-card container-tech" data-category="ecommerce"
+                    data-title="E-commerce - Projeto 22">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/104/104 - tab.webp" alt="E-commerce - Projeto 22">
+                    </div>
+                    <h3>E-commerce - Projeto 22</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/104/screencapture-shoppingdasmakes-commercesuite-br-2022-12-29-11_10_13.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 23 - Site Institucional -->
+                <div class="portfolio-card container-tech" data-category="institutional"
+                    data-title="Site Institucional - Projeto 23">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(90) - Portfolio-Projeto-66-CAPA/(90) tab.webp"
+                            alt="Site Institucional - Projeto 23">
+                    </div>
+                    <h3>Site Institucional - Projeto 23</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(90) - Portfolio-Projeto-66-CAPA/screencapture-ccpj-s3midiadigital-br-2026-01-26-14_39_09.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 24 - Site Institucional -->
+                <div class="portfolio-card container-tech" data-category="institutional"
+                    data-title="Site Institucional - Projeto 24">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(91) - Portfolio-Projeto-66-CAPA/(91) - tab.webp"
+                            alt="Site Institucional - Projeto 24">
+                    </div>
+                    <h3>Site Institucional - Projeto 24</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(91) - Portfolio-Projeto-66-CAPA/screencapture-bahiacamaroes-br-2023-04-12-20_09_01.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+                <!-- Card 25 - Site Institucional -->
+                <div class="portfolio-card container-tech" data-category="institutional"
+                    data-title="Site Institucional - Projeto 25">
+                    <div style="text-align: center;">
+                        <span class="status-badge active">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ativo
+                        </span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="wp-content/uploads/2025/Lp/(92 - Portfolio-Projeto-66-CAPA/(92 - tab.webp"
+                            alt="Site Institucional - Projeto 25">
+                    </div>
+                    <h3>Site Institucional - Projeto 25</h3>
+                    <div style="text-align: center;">
+                        <a href="wp-content/uploads/2025/Lp/(92 - Portfolio-Projeto-66-CAPA/screencapture-grupomettaengenharia-br-2023-04-12-20_03_34.png"
+                            class="portfolio-button">Ver projeto completo</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Controles de Paginação -->
+            <div class="pagination-controls" id="paginationControls">
+                <button class="pagination-btn" id="prevBtn" onclick="changePage(-1)">
+                    <span class="full-text">← Anterior</span>
+                    <span class="short-text">←</span>
+                </button>
+
+                <div class="pagination-numbers" id="paginationNumbers">
+                    <!-- Números das páginas serão inseridos aqui via JavaScript -->
+                </div>
+
+                <button class="pagination-btn" id="nextBtn" onclick="changePage(1)">
+                    <span class="full-text">Próximo →</span>
+                    <span class="short-text">→</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script de Paginação e Filtros -->
+    <script>
+        // Configuração
+        const CARDS_PER_PAGE = 23;
+        let currentPage = 1;
+        let totalPages = 1;
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // Inicializar ao carregar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            initFilters();
+            initPagination();
+        });
+
+        // ========== FILTROS ==========
+        function initFilters() {
+            // Botões de filtro
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // Remover active de todos
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    // Adicionar active ao clicado
+                    this.classList.add('active');
+                    // Aplicar filtro
+                    currentFilter = this.getAttribute('data-filter');
+                    currentPage = 1;
+                    applyFilters();
+                });
+            });
+
+            // Campo de pesquisa
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function () {
+                currentSearch = this.value.toLowerCase();
+                currentPage = 1;
+                applyFilters();
+            });
+        }
+
+        function applyFilters() {
+            const cards = document.querySelectorAll('.portfolio-card');
+            let visibleCards = 0;
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.getAttribute('data-title').toLowerCase();
+
+                // Verificar filtro de categoria
+                const matchesCategory = currentFilter === 'all' || category === currentFilter;
+
+                // Verificar filtro de pesquisa
+                const matchesSearch = currentSearch === '' || title.includes(currentSearch);
+
+                // Mostrar ou ocultar card
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = '';
+                    visibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Verificar se há resultados
+            const portfolioGrid = document.querySelector('.portfolio-grid');
+            let noResultsMsg = document.querySelector('.no-results');
+
+            if (visibleCards === 0) {
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.className = 'no-results';
+                    noResultsMsg.innerHTML = `
+                        <h3>Nenhum projeto encontrado</h3>
+                        <p>Tente ajustar seus filtros ou termo de pesquisa.</p>
+                    `;
+                    portfolioGrid.appendChild(noResultsMsg);
+                }
+            } else {
+                if (noResultsMsg) {
+                    noResultsMsg.remove();
+                }
+            }
+
+            // Atualizar paginação
+            initPagination();
+        }
+
+        function initPagination() {
+            // Contar apenas cards visíveis (não filtrados)
+            const allCards = document.querySelectorAll('.portfolio-card');
+            const visibleCards = Array.from(allCards).filter(card => card.style.display !== 'none');
+
+            totalPages = Math.ceil(visibleCards.length / CARDS_PER_PAGE);
+
+            // Se não houver cards, definir como 1 página
+            if (totalPages < 1) {
+                totalPages = 1;
+            }
+
+            // Criar números das páginas
+            createPageNumbers();
+
+            // Mostrar primeira página
+            showPage(1);
+        }
+
+        function createPageNumbers() {
+            const numbersContainer = document.getElementById('paginationNumbers');
+            numbersContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'pagination-number';
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => showPage(i);
+
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+
+                numbersContainer.appendChild(pageBtn);
+            }
+        }
+
+        function showPage(pageNumber) {
+            if (pageNumber < 1 || pageNumber > totalPages) return;
+
+            currentPage = pageNumber;
+
+            // Pegar apenas cards visíveis (não filtrados)
+            const allCards = document.querySelectorAll('.portfolio-card');
+            const visibleCards = Array.from(allCards).filter(card => card.style.display !== 'none');
+
+            // Calcular range de cards para esta página
+            const startIndex = (pageNumber - 1) * CARDS_PER_PAGE;
+            const endIndex = startIndex + CARDS_PER_PAGE;
+
+            // Ocultar todos os cards visíveis primeiro
+            visibleCards.forEach(card => card.classList.add('hidden'));
+
+            // Mostrar apenas cards da página atual
+            visibleCards.forEach((card, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    card.classList.remove('hidden');
+                }
+            });
+
+            // Atualizar botões de navegação
+            updateNavigationButtons();
+
+            // Rolar suavemente para o topo da seção de portfólio
+            document.querySelector('.portfolio-section').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function changePage(direction) {
+            const newPage = currentPage + direction;
+            showPage(newPage);
+        }
+
+        function updateNavigationButtons() {
+            // Atualizar botão Anterior
+            const prevBtn = document.getElementById('prevBtn');
+            prevBtn.disabled = currentPage === 1;
+
+            // Atualizar botão Próximo
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.disabled = currentPage === totalPages;
+
+            // Atualizar números das páginas (destacar ativo)
+            const pageNumbers = document.querySelectorAll('.pagination-number');
+            pageNumbers.forEach((btn, index) => {
+                if (index + 1 === currentPage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+    </script>
+
+    <!-- Script do Menu Sticky -->
+    <script>
+        // Seleciona elementos do menu sticky
+        const stickyMenu = document.getElementById('stickyMenu');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // Configurações
+        const SCROLL_THRESHOLD = 100;
+        let lastScrollPosition = 0;
+        let isMenuVisible = false;
+
+        // Função de scroll
+        function handleScroll() {
+            const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScrollPosition > SCROLL_THRESHOLD) {
+                if (!isMenuVisible) {
+                    stickyMenu.classList.add('visible');
+                    isMenuVisible = true;
+                }
+            } else {
+                if (isMenuVisible) {
+                    stickyMenu.classList.remove('visible');
+                    isMenuVisible = false;
+                }
+            }
+
+            lastScrollPosition = currentScrollPosition;
+        }
+
+        // Toggle menu mobile
+        function toggleMobileMenu() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Smooth scroll para âncoras
+        function smoothScrollToSection(e) {
+            const href = e.target.getAttribute('href');
+
+            if (href && href.startsWith('#') && href !== '#') {
+                e.preventDefault();
+
+                const targetSection = document.querySelector(href);
+
+                if (targetSection) {
+                    if (navMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+
+                    const menuHeight = stickyMenu.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - menuHeight - 20;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+
+        // Debounce para otimizar performance
+        function debounce(func, wait = 10) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Event Listeners
+        window.addEventListener('scroll', debounce(() => {
+            handleScroll();
+        }, 10));
+
+        menuToggle.addEventListener('click', toggleMobileMenu);
+
+        navItems.forEach(item => {
+            item.addEventListener('click', smoothScrollToSection);
+        });
+
+        // Fecha menu mobile ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') &&
+                !navMenu.contains(e.target) &&
+                !menuToggle.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Fecha menu mobile ao pressionar ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Ajusta menu no resize da janela
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            }, 250);
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScroll();
+        });
+    </script>
+
+    <!-- ====================================== -->
+    <!-- FOOTER -->
+    <!-- ====================================== -->
+    <style>
+        .site-footer {
+            background-color: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            margin-top: 80px;
+            color: #fff;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Desktop Layout - Single Linear Row */
+        @media (min-width: 900px) {
+            .footer-container {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                flex-wrap: nowrap;
+            }
+        }
+
+        /* Logo */
+        .footer-logo img {
+            height: 32px;
+            width: auto;
+            opacity: 0.9;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+        }
+
+        /* Copyright */
+        .footer-copyright {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            white-space: nowrap;
+        }
+
+        /* Social Icons */
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-social svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Links */
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .footer-links span {
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .footer-links span:hover {
+            color: #fff;
+        }
+    </style>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- 1. Logo -->
+            <div class="footer-logo">
+                <a href="#">
+                    <img src="wp-content/uploads/2025/11/Logo S3 midia.webp" alt="S3 Mídia Digital">
+                </a>
+            </div>
+
+            <!-- 2. Copyright -->
+            <div class="footer-copyright">
+                Copyright ©2025 | S3MÍDIA DIGITAL
+            </div>
+
+            <!-- 3. Social Icons -->
+            <div class="footer-social">
+                <a href="https://api.whatsapp.com/send/?phone=5577999238273&text&text=%22Ol%C3%A1,%20gostaria%20de%20fazer%20um%20or%C3%A7amento...%22&type=phone_number&app_absent=0"
+                    target="_blank" aria-label="WhatsApp">
+                    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/s3midia/" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+
+
+
+            <!-- Links -->
+            <div class="footer-links">
+                <span>Politica de Privacidade</span>
+                <span>Termos de uso</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

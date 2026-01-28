@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Fácil - Arraste para Favoritos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .bookmarklet-area {
+            background: #f8f9fa;
+            border: 3px dashed #667eea;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .bookmarklet {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+            cursor: move;
+        }
+
+        .bookmarklet:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .instruction {
+            background: #e0f2fe;
+            border-left: 5px solid #0284c7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .instruction h3 {
+            margin-top: 0;
+            color: #0284c7;
+        }
+
+        .step {
+            background: #f0fdf4;
+            border-left: 5px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .step strong {
+            color: #10b981;
+            font-size: 18px;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 40px;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .save-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s ease;
+            cursor: move;
+        }
+
+        .save-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>✨ Editor Super Fácil</h1>
+        <p class="subtitle">Solução definitiva - 100% funcional</p>
+
+        <div class="instruction">
+            <h3>📌 O que são Bookmarklets?</h3>
+            <p>São botões mágicos que ficam nos seus favoritos e executam funções especiais quando você clica neles!</p>
+        </div>
+
+        <div class="step">
+            <strong>PASSO 1:</strong> Arraste este botão verde para a sua <strong>Barra de Favoritos</strong> (mostrar
+            barra: Ctrl+Shift+B)
+        </div>
+
+        <div class="bookmarklet-area">
+            <a href="javascript:(function(){document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,a,li').forEach(el=>{if(!el.closest('script')&&!el.closest('style')){el.contentEditable=true;el.style.outline='2px dashed #10b981';}});document.querySelectorAll('img').forEach(img=>{img.style.cursor='pointer';img.style.border='2px dashed #3b82f6';img.onclick=function(e){e.preventDefault();e.stopPropagation();const input=document.createElement('input');input.type='file';input.accept='image/*';input.onchange=e=>{const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=ev=>img.src=ev.target.result;reader.readAsDataURL(file);}};input.click();};});const div=document.createElement('div');div.innerHTML='<div style=\"
+                position:fixed;top:20px;right:20px;background:#10b981;color:white;padding:15px
+                25px;border-radius:8px;box-shadow:0 4px 15px
+                rgba(0,0,0,0.3);z-index:999999;font-family:sans-serif;font-size:16px;\">✅ Edição ativada!<br>Clique nos
+                textos e imagens
+        </div>';document.body.appendChild(div);setTimeout(()=>div.remove(),3000);})();" class="bookmarklet">
+        🎨 Ativar Editor
+        </a>
+        <p style="margin-top: 20px; color: #666;">
+            ⬆️ Arraste este botão para os favoritos
+        </p>
+    </div>
+
+    <div class="arrow">⬇️</div>
+
+    <div class="step">
+        <strong>PASSO 2:</strong> Abra <code>index - S3midia.html</code> no Chrome
+    </div>
+
+    <div class="arrow">⬇️</div>
+
+    <div class="step">
+        <strong>PASSO 3:</strong> Clique no botão <strong>"🎨 Ativar Editor"</strong> que você salvou nos favoritos
+    </div>
+
+    <div class="arrow">⬇️</div>
+
+    <div class="step">
+        <strong>PASSO 4:</strong> Edite os textos e imagens clicando neles
+    </div>
+
+    <div class="arrow">⬇️</div>
+
+    <div class="step">
+        <strong>PASSO 5:</strong> Quando terminar, arraste este botão VERMELHO para os favoritos também:
+    </div>
+
+    <div class="bookmarklet-area">
+        <a href="javascript:(function(){const html=document.documentElement.outerHTML;const blob=new Blob([html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='site-editado-'+Date.now()+'.html';a.click();const div=document.createElement('div');div.innerHTML='<div style=\"
+            position:fixed;top:20px;right:20px;background:#10b981;color:white;padding:20px
+            30px;border-radius:8px;box-shadow:0 4px 15px
+            rgba(0,0,0,0.3);z-index:999999;font-family:sans-serif;font-size:18px;font-weight:bold;\">💾 Arquivo salvo!
+    </div>';document.body.appendChild(div);setTimeout(()=>div.remove(),3000);})();" class="save-button">
+    💾 Salvar HTML
+    </a>
+    <p style="margin-top: 20px; color: #666;">
+        ⬆️ Arraste este botão VERMELHO para os favoritos
+    </p>
+    </div>
+
+    <div class="arrow">⬇️</div>
+
+    <div class="step">
+        <strong>PASSO 6:</strong> Clique no botão <strong>"💾 Salvar HTML"</strong> nos favoritos para baixar o arquivo
+        editado
+    </div>
+
+    <div class="instruction">
+        <h3>🎯 Resumo</h3>
+        <ol>
+            <li>Arraste os 2 botões (verde e vermelho) para seus favoritos</li>
+            <li>Abra seu site no Chrome</li>
+            <li>Clique no botão verde (Ativar Editor)</li>
+            <li>Edite o que quiser</li>
+            <li>Clique no botão vermelho (Salvar HTML)</li>
+            <li>Pronto! ✅</li>
+        </ol>
+    </div>
+
+    <div class="instruction" style="background:#fef2f2;border-left-color:#ef4444;">
+        <h3 style="color:#ef4444;">💡 Dica Importante</h3>
+        <p><strong>Mostre a Barra de Favoritos primeiro:</strong> Pressione <kbd>Ctrl+Shift+B</kbd> para mostrar a barra
+            onde você vai arrastar os botões!</p>
+    </div>
+    </div>
+</body>
+
+</html>

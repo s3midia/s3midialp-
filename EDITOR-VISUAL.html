@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Visual Standalone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1e293b;
+        }
+
+        #toolbar {
+            background: linear-gradient(135deg, #10b981, #059669);
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #toolbar button,
+        #toolbar input[type="file"] {
+            background: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #toolbar button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #toolbar button:active {
+            transform: scale(0.95);
+        }
+
+        #loadBtn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        #editBtn {
+            background: #10b981;
+            color: white;
+        }
+
+        #saveBtn {
+            background: #ef4444;
+            color: white;
+        }
+
+        #status {
+            color: white;
+            margin-left: auto;
+            font-size: 14px;
+        }
+
+        #iframe-container {
+            width: 100%;
+            height: calc(100vh - 60px);
+            background: white;
+        }
+
+        #editor-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toolbar">
+        <label for="fileInput"
+            style="background: #3b82f6; color: white; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+            📂 Carregar HTML
+        </label>
+        <input type="file" id="fileInput" accept=".html" class="hidden">
+
+        <button id="editBtn" disabled>✏️ Ativar Edição</button>
+        <button id="saveBtn" disabled>💾 Salvar HTML</button>
+
+        <div id="status">Carregue um arquivo HTML para começar</div>
+    </div>
+
+    <div id="iframe-container">
+        <iframe id="editor-frame"></iframe>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const editBtn = document.getElementById('editBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const editorFrame = document.getElementById('editor-frame');
+        const status = document.getElementById('status');
+
+        let htmlContent = '';
+        let editMode = false;
+
+        // Carregar arquivo
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    htmlContent = event.target.result;
+                    editorFrame.srcdoc = htmlContent;
+                    editBtn.disabled = false;
+                    saveBtn.disabled = false;
+                    status.textContent = `📄 ${file.name} carregado`;
+                    status.style.color = '#10b981';
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Ativar edição
+        editBtn.addEventListener('click', function () {
+            if (!editMode) {
+                enableEditing();
+                editMode = true;
+                editBtn.textContent = '🔒 Desativar Edição';
+                editBtn.style.background = '#f59e0b';
+                status.textContent = '✅ Modo de edição ATIVO - Clique nos textos e imagens';
+                status.style.color = '#10b981';
+            } else {
+                disableEditing();
+                editMode = false;
+                editBtn.textContent = '✏️ Ativar Edição';
+                editBtn.style.background = '#10b981';
+                status.textContent = '🔒 Edição desativada';
+                status.style.color = '#94a3b8';
+            }
+        });
+
+        function enableEditing() {
+            const iframeDoc = editorFrame.contentDocument || editorFrame.contentWindow.document;
+
+            // Fazer textos editáveis
+            iframeDoc.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li, div').forEach(el => {
+                // Evitar elementos vazios ou de script
+                if (el.textContent.trim() !== '' && !el.closest('script') && !el.closest('style')) {
+                    el.contentEditable = true;
+                    el.style.outline = '2px dashed #10b981';
+                    el.style.outlineOffset = '2px';
+                    el.addEventListener('focus', function () {
+                        this.style.outline = '2px solid #10b981';
+                    });
+                    el.addEventListener('blur', function () {
+                        this.style.outline = '2px dashed #10b981';
+                    });
+                }
+            });
+
+            // Fazer imagens editáveis
+            iframeDoc.querySelectorAll('img').forEach(img => {
+                img.style.cursor = 'pointer';
+                img.style.border = '3px dashed #3b82f6';
+                img.style.borderRadius = '4px';
+
+                img.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    changeImage(this);
+                });
+
+                img.addEventListener('mouseenter', function () {
+                    this.style.border = '3px solid #3b82f6';
+                    this.style.transform = 'scale(1.02)';
+                });
+
+                img.addEventListener('mouseleave', function () {
+                    this.style.border = '3px dashed #3b82f6';
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        function disableEditing() {
+            const iframeDoc = editorFrame.contentDocument || editorFrame.contentWindow.document;
+
+            iframeDoc.querySelectorAll('[contenteditable="true"]').forEach(el => {
+                el.contentEditable = false;
+                el.style.outline = 'none';
+            });
+
+            iframeDoc.querySelectorAll('img').forEach(img => {
+                img.style.cursor = 'default';
+                img.style.border = 'none';
+                img.replaceWith(img.cloneNode(true));
+            });
+        }
+
+        function changeImage(imgElement) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+
+            input.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        imgElement.src = event.target.result;
+                        status.textContent = '✅ Imagem atualizada!';
+                        status.style.color = '#10b981';
+                        setTimeout(() => {
+                            status.textContent = '✅ Modo de edição ATIVO - Clique nos textos e imagens';
+                        }, 2000);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            input.click();
+        }
+
+        // Salvar HTML
+        saveBtn.addEventListener('click', function () {
+            const iframeDoc = editorFrame.contentDocument || editorFrame.contentWindow.document;
+            const editedHtml = iframeDoc.documentElement.outerHTML;
+
+            const blob = new Blob(['<!DOCTYPE html>\n' + editedHtml], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'site-editado-' + Date.now() + '.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            status.textContent = '💾 Arquivo salvo com sucesso!';
+            status.style.color = '#10b981';
+
+            setTimeout(() => {
+                if (editMode) {
+                    status.textContent = '✅ Modo de edição ATIVO - Clique nos textos e imagens';
+                } else {
+                    status.textContent = '📄 Arquivo carregado';
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
