@@ -173,9 +173,9 @@ $sourceHeader = @"
             </div>
             <div class="nav-section">
                 <ul class="nav-menu" id="navMenuInjected">
-                    <li><a href="index - S3midia.html" class="nav-item">Início</a></li>
+                    <li><a href="index.html" class="nav-item">Início</a></li>
                     <li><a href="#" class="nav-item active">Portfólio</a></li>
-                    <li><a href="index - S3midia.html#servicos" class="nav-item">Serviços</a></li>
+                    <li><a href="index.html#servicos" class="nav-item">Serviços</a></li>
                     <li><a href="https://api.whatsapp.com/send/?phone=5577999238273&text=Ol%C3%A1%2C+gostaria+de+fazer+um+or%C3%A7amento..." class="nav-item">Contato</a></li>
                 </ul>
                 <!-- Menu Toggle -->
